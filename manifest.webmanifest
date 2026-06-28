@@ -1,0 +1,18 @@
+{
+  "name": "Treasury Scout",
+  "short_name": "Treasury",
+  "description": "U.S. Treasury securities tracker.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0f3d5e",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
