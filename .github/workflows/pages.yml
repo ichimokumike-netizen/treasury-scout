@@ -5,25 +5,66 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Fetch Treasury data snapshot
+        run: |
+          mkdir -p data
+          node <<'NODE'
+          const fs = require('fs');
+          const endpoints = {
+            upcoming: 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/upcoming_auctions?page[size]=100&sort=auction_date',
+            recent: 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?page[size]=100&sort=-auction_date'
+          };
+          async function getJson(url) {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(url + ' returned ' + response.status);
+            return response.json();
+          }
+          (async () => {
+            const upcoming = await getJson(endpoints.upcoming);
+            const recent = await getJson(endpoints.recent);
+            const snapshot = {
+              updated_at: new Date().toISOString(),
+              source: 'Fiscal Data API via GitHub Actions',
+              upcoming: upcoming.data || [],
+              recent: recent.data || []
+            };
+            fs.writeFileSync('data/treasury.json', JSON.stringify(snapshot, null, 2) + '\n');
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
