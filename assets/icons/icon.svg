@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Treasury Scout icon">
+  <rect width="512" height="512" rx="110" fill="#0f3d5e"/>
+  <circle cx="256" cy="256" r="158" fill="#176b9d" opacity="0.95"/>
+  <path d="M155 292c46 46 114 46 160 0 23-23 58-23 81 0" fill="none" stroke="#ffffff" stroke-width="34" stroke-linecap="round"/>
+  <path d="M155 220c46-46 114-46 160 0 23 23 58 23 81 0" fill="none" stroke="#bde6ff" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="256" cy="256" r="55" fill="#ffffff"/>
+  <text x="256" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="58" font-weight="800" fill="#0f3d5e">$</text>
+</svg>
