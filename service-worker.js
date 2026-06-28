@@ -1,7 +1,9 @@
-const CACHE_NAME = "treasury-scout-v1";
+const CACHE_NAME = "treasury-scout-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./styles.css",
+  "./app.js",
   "./manifest.webmanifest",
   "./assets/icons/icon.svg"
 ];
@@ -22,16 +24,8 @@ self.addEventListener("fetch", (event) => {
   const request = event.request;
   const url = new URL(request.url);
 
-  if (url.hostname === "api.fiscaldata.treasury.gov") {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          return response;
-        })
-        .catch(() => caches.match(request))
-    );
+  if (url.pathname.endsWith("/data/treasury.json")) {
+    event.respondWith(fetch(request).catch(() => caches.match(request)));
     return;
   }
 
