@@ -1,0 +1,54 @@
+name: Refresh Treasury Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch Treasury data
+        run: |
+          mkdir -p data
+          node <<'NODE'
+          const fs = require('fs');
+          const endpoints = {
+            upcoming: 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_upcoming?page[size]=100&sort=auction_date',
+            recent: 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?page[size]=100&sort=-auction_date'
+          };
+          async function getJson(url) {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(url + ' returned ' + response.status);
+            return response.json();
+          }
+          (async () => {
+            const upcoming = await getJson(endpoints.upcoming);
+            const recent = await getJson(endpoints.recent);
+            const snapshot = {
+              updated_at: new Date().toISOString(),
+              source: 'Fiscal Data API via GitHub Actions',
+              upcoming: upcoming.data || [],
+              recent: recent.data || []
+            };
+            fs.writeFileSync('data/treasury.json', JSON.stringify(snapshot, null, 2) + '\n');
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/treasury.json
+          git diff --cached --quiet && echo "No data changes" || git commit -m "Refresh Treasury data snapshot"
+          git push
