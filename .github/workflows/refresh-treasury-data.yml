@@ -6,22 +6,31 @@ on:
     - cron: '0 */6 * * *'
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  refresh:
+  refresh-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Fetch Treasury data
+      - name: Fetch Treasury data snapshot
         run: |
           mkdir -p data
           node <<'NODE'
           const fs = require('fs');
           const endpoints = {
-            upcoming: 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_upcoming?page[size]=100&sort=auction_date',
+            upcoming: 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/upcoming_auctions?page[size]=100&sort=auction_date',
             recent: 'https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?page[size]=100&sort=-auction_date'
           };
           async function getJson(url) {
@@ -45,10 +54,14 @@ jobs:
           });
           NODE
 
-      - name: Commit refreshed data
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/treasury.json
-          git diff --cached --quiet && echo "No data changes" || git commit -m "Refresh Treasury data snapshot"
-          git push
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
