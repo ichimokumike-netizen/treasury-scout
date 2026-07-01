@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-30T18:40:30.682Z",
+  "updated_at": "2026-07-01T00:53:42.939Z",
   "source": "Fiscal Data API via GitHub Actions",
   "upcoming": [
     {
@@ -1066,7 +1066,7 @@
       "allocation_pctage_decimals": "2",
       "announcemtd_cusip": "null",
       "announcemt_date": "2026-06-30",
-      "auction_format": "Single Price",
+      "auction_format": "Single-Price",
       "avg_med_discnt_rate": "null",
       "avg_med_investment_rate": "null",
       "avg_med_price": "null",
@@ -1181,7 +1181,7 @@
       "allocation_pctage_decimals": "2",
       "announcemtd_cusip": "null",
       "announcemt_date": "2026-06-30",
-      "auction_format": "Single Price",
+      "auction_format": "Single-Price",
       "avg_med_discnt_rate": "null",
       "avg_med_investment_rate": "null",
       "avg_med_price": "null",
@@ -1296,7 +1296,7 @@
       "allocation_pctage_decimals": "2",
       "announcemtd_cusip": "null",
       "announcemt_date": "2026-06-30",
-      "auction_format": "Single Price",
+      "auction_format": "Single-Price",
       "avg_med_discnt_rate": "null",
       "avg_med_investment_rate": "null",
       "avg_med_price": "null",
@@ -1411,7 +1411,7 @@
       "allocation_pctage_decimals": "2",
       "announcemtd_cusip": "null",
       "announcemt_date": "2026-06-25",
-      "auction_format": "Single Price",
+      "auction_format": "Single-Price",
       "avg_med_discnt_rate": "3.600000",
       "avg_med_investment_rate": "null",
       "avg_med_price": "null",
