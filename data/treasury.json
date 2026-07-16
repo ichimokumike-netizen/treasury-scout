@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-15T18:26:59.560Z",
+  "updated_at": "2026-07-16T00:33:58.138Z",
   "source": "Fiscal Data API via GitHub Actions",
   "upcoming": [
     {
@@ -1265,7 +1265,7 @@
       "allocation_pctage_decimals": "2",
       "announcemtd_cusip": "null",
       "announcemt_date": "2026-07-14",
-      "auction_format": "Single Price",
+      "auction_format": "Single-Price",
       "avg_med_discnt_rate": "3.730000",
       "avg_med_investment_rate": "null",
       "avg_med_price": "null",
