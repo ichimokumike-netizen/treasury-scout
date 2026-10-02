@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-02T11:54:44.977Z",
+  "updated_at": "2026-10-02T17:29:27.202Z",
   "source": "Fiscal Data API via GitHub Actions",
   "upcoming": [
     {
@@ -982,6 +982,17 @@
       "issue_date": "2026-10-08"
     },
     {
+      "record_date": "2026-10-02",
+      "security_type": "Bill",
+      "security_term": "17-Week",
+      "reopening": "No",
+      "cusip": "912797WY9",
+      "offering_amt": "null",
+      "announcemt_date": "2026-10-06",
+      "auction_date": "2026-10-07",
+      "issue_date": "2026-10-13"
+    },
+    {
       "record_date": "2026-09-25",
       "security_type": "Note",
       "security_term": "9-Year 10-Month",
@@ -993,6 +1004,28 @@
       "issue_date": "2026-10-15"
     },
     {
+      "record_date": "2026-10-02",
+      "security_type": "Bill",
+      "security_term": "8-Week",
+      "reopening": "Yes",
+      "cusip": "912797WE3",
+      "offering_amt": "null",
+      "announcemt_date": "2026-10-06",
+      "auction_date": "2026-10-08",
+      "issue_date": "2026-10-13"
+    },
+    {
+      "record_date": "2026-10-02",
+      "security_type": "Bill",
+      "security_term": "4-Week",
+      "reopening": "Yes",
+      "cusip": "912797VW4",
+      "offering_amt": "null",
+      "announcemt_date": "2026-10-06",
+      "auction_date": "2026-10-08",
+      "issue_date": "2026-10-13"
+    },
+    {
       "record_date": "2026-09-25",
       "security_type": "Bond",
       "security_term": "29-Year 10-Month",
@@ -1001,6 +1034,39 @@
       "offering_amt": "22000000000",
       "announcemt_date": "2026-10-01",
       "auction_date": "2026-10-08",
+      "issue_date": "2026-10-15"
+    },
+    {
+      "record_date": "2026-10-02",
+      "security_type": "Bill",
+      "security_term": "26-Week",
+      "reopening": "Yes",
+      "cusip": "912797UE5",
+      "offering_amt": "null",
+      "announcemt_date": "2026-10-08",
+      "auction_date": "2026-10-13",
+      "issue_date": "2026-10-15"
+    },
+    {
+      "record_date": "2026-10-02",
+      "security_type": "Bill",
+      "security_term": "6-Week",
+      "reopening": "Yes",
+      "cusip": "912797SU2",
+      "offering_amt": "null",
+      "announcemt_date": "2026-10-08",
+      "auction_date": "2026-10-13",
+      "issue_date": "2026-10-15"
+    },
+    {
+      "record_date": "2026-10-02",
+      "security_type": "Bill",
+      "security_term": "13-Week",
+      "reopening": "Yes",
+      "cusip": "912797VT1",
+      "offering_amt": "null",
+      "announcemt_date": "2026-10-08",
+      "auction_date": "2026-10-13",
       "issue_date": "2026-10-15"
     }
   ],
