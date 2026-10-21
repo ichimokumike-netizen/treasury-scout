@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T12:15:59.031Z",
+  "updated_at": "2026-10-21T18:13:49.107Z",
   "source": "Fiscal Data API via GitHub Actions",
   "upcoming": [
     {
@@ -1218,7 +1218,7 @@
       "inflation_index_security": "Yes",
       "tint_cusip_1": "null",
       "tint_cusip_2": "null",
-      "pdf_filenm_spec_announcemt": "null"
+      "pdf_filenm_spec_announcemt": "SPL_20261021_1.pdf"
     },
     {
       "record_date": "2026-10-23",
